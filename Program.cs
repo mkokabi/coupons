@@ -34,7 +34,14 @@ namespace coupons
       for (int i = 0; i < coupons.Count; i++)
       {
         var node = new Node() {Value = coupons[i]};
-        AddNode(node, i, 0);
+        if (node.Value == target)
+        {
+          combinations.Add(new List<int>() {node.Value});
+        }
+        else
+        {
+          AddNode(node, i, 0);
+        }
       }
 
       return combinations;
@@ -65,10 +72,11 @@ namespace coupons
 
     static void Main(string[] args)
     {
-      var options = Options(7, 1, 2, 3, 4, 5, 6, 7, 8);
+      var options = Options(7, 1, 2, 3, 4, 5, 6, 7, 7);
       foreach (var o in options)
       {
         o.ForEach(i => Console.Write($"{i} "));
+        
         Console.WriteLine();
       }
       Console.WriteLine();
